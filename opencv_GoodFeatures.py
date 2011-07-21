@@ -1,5 +1,6 @@
 ## Basic code sample adopted from http://opencv.willowgarage.com/documentation/python/cookbook.html
 
+#TODO: Use object identifications. And then try to train an ML algorithm for those objects.
 import os
 import cv
 import sys
