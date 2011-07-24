@@ -1,6 +1,8 @@
 
 --filetype=cpp:expandtab:shiftwidth=2:tabstop=8:softtabstop=2
 
+import qualified Data.List (nub, sort)
+
 removeNonUppercase:: [Char] -> [Char]
 removeNonUppercase st = [c |c <- st,c `elem` ['A'..'Z']]
 
@@ -170,9 +172,6 @@ quicksort' (x:xs) =
 	    biggerSorted = quicksort (filter (>x) xs)
 	in smallerSorted ++ [x] ++ biggerSorted
 
---import Data.List
---numUniques :: (Eq a) => [a] -> Int
---numUniques = length . nub
 
 multThree :: (Num a) => a -> a -> a -> a
 multThree x y z = x * y * z
@@ -234,11 +233,23 @@ addThree' = \x -> \y -> \z  -> x + y + z
 product' :: (Num a) => [a] -> a
 product' = foldr1 (*)
 
---sqrtSums :: (Ord a,Floating a, Enum a) => a -> Int
-sqrtSums :: a -> Int
+sqrtSums :: (Ord a,Floating a, Enum a) => a -> Int
+--sqrtSums :: a -> Int
 sqrtSums x = length (takeWhile (<x)(scanl1 (+) (map sqrt [1..]))) +1
 
-($) :: (a -> b) -> a -> b
-f $ x = f x
+--($) :: (a -> b) -> a -> b
+--f $ x = f x
+
+fn x = ceiling . negate .tan .cos .max 50 
+
+oddSquareSum :: (Integral a) => a -> a 
+--oddSquareSum  x = sum.takeWhile (<x). filter  odd .map (^2) $ [1..]
+oddSquareSum x = 
+	let oddSquares = filter odd $ map (^2) [1..]
+	    belowLimit = takeWhile (< x) oddSquares
+	in sum belowLimit
 
 
+
+numUniques :: (Eq a) => [a] -> Int
+numUniques = length . Data.List.nub
