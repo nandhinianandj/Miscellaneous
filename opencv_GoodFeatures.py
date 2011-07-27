@@ -2,7 +2,7 @@
 
 #TODO: Use object identifications. And then try to train an ML algorithm for those objects.
 import os
-import cv
+from cv2 import cv
 import sys
 from copy import deepcopy
 import pdb
@@ -30,7 +30,7 @@ def main():
 
         pdb.set_trace()
 
-        for (x,y) in cv.GoodFeaturesToTrack(img_gray,eig_image,temp_image,10,0.04,1.0,useHarris = True):
+        for (x,y) in cv.GoodFeaturesToTrack(img_gray,eig_image,temp_image,5,0.04,10.0,useHarris = True):
             BestFeatures.append((x,y))
         
 

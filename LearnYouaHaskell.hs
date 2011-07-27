@@ -249,7 +249,39 @@ oddSquareSum x =
 	    belowLimit = takeWhile (< x) oddSquares
 	in sum belowLimit
 
-
-
 numUniques :: (Eq a) => [a] -> Int
 numUniques = length . Data.List.nub
+
+--search :: (Eq a) => [a] -> [a] -> Bool
+--search needle haystack = 
+--	let nlen = length needle
+--	in foldl (\acc x -> if take nlen x == needle then True else acc) False (tail haystack)
+
+--group' :: (a -> a -> Bool) -> [a] -> [[a]]
+--group' f x:xs =  if (f x) then 
+
+mybubble::(Ord a) => [a] -> [a]
+mybubble ([]) = []
+mybubble (x:[]) = [x]
+mybubble (x:y:xs) = if x>y then y:mybubble (x:xs) else x:mybubble (y:xs)
+
+--Loop ::[a] -> [a]
+--Loop ([]) = []
+--Loop (x:[]) = [x]
+--Loop (x:y:xs) = if x>y then y:Loop (x:xs) else x:Loop (y:xs)
+
+
+--Bubbble implementation copied from http://tech-nickel.blogspot.com/2008/10/sorting-using-haskell.html
+bubble :: (Ord t) => [t] -> [t] 
+bubble (a:b:c) | a < b = a : bubble (b:c)
+               | otherwise = b : bubble (a:c)
+bubble (a:[]) = [a] 
+bubble [] = []
+
+loop :: (Num a, Ord a) => a -> (t -> t) -> t -> t
+loop count f x | count > 0 = loop (count -1) f x'
+			   | otherwise = x
+			   where x' = f x
+
+bubbleSort :: (Ord a) => [a] -> [a]
+bubbleSort a = loop (length a -2) bubble a
