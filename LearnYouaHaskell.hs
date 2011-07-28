@@ -1,7 +1,7 @@
 
 --filetype=cpp:expandtab:shiftwidth=2:tabstop=8:softtabstop=2
 
-import qualified Data.List (nub, sort)
+import Data.List
 
 removeNonUppercase:: [Char] -> [Char]
 removeNonUppercase st = [c |c <- st,c `elem` ['A'..'Z']]
@@ -252,10 +252,10 @@ oddSquareSum x =
 numUniques :: (Eq a) => [a] -> Int
 numUniques = length . Data.List.nub
 
---search :: (Eq a) => [a] -> [a] -> Bool
---search needle haystack = 
---	let nlen = length needle
---	in foldl (\acc x -> if take nlen x == needle then True else acc) False (tail haystack)
+search :: (Eq a) => [a] -> [a] -> Bool
+search needle haystack = 
+	let nlen = length needle
+	in foldl (\acc x -> if take nlen x == needle then True else acc) False (tails haystack)
 
 --group' :: (a -> a -> Bool) -> [a] -> [[a]]
 --group' f x:xs =  if (f x) then 
