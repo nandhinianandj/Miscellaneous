@@ -72,14 +72,14 @@ main = do
 -- Simple configuration
 myBorderWidth = 2
 myBrowser = "firefox"
-myTerminal = "urxvtc"
+myTerminal = "gnome-terminal --window-with-profile=xmonad"
 myShell = "zsh"
 myModMask = mod4Mask
 myIconDir = "/home/anand/.dzen/dzenIcons/"
 myStatusBar = "dzen2 -x '0' -y '0' -h '20' -w '330' -ta 'l' -bg '" ++ myDBGColor ++ "' -fn '" ++ myFont ++ "'"
-myLeft = ".dzen/left.zsh | dzen2 -xs 1 -x '330' -y '0' -h '20' -w '1110' -ta 'r' -bg '" ++ myDBGColor ++ "' -fg '" ++ myDFGColor ++ "' -fn '" ++ myFont ++ "'"
-myRight = ".dzen/right.zsh | dzen2 -xs 2 -y '0' -h '20' -ta 'r' -bg '" ++ myDBGColor ++ "' -fg '" ++ myDFGColor ++ "' -fn '" ++ myFont ++ "'"
-myFont = "xft:Ubuntu-R.ttf-" 
+myLeft = "/home/anand/.dzen/left.zsh | dzen2 -xs 1 -x '330' -y '0' -h '20' -w '1110' -ta 'r' -bg '" ++ myDBGColor ++ "' -fg '" ++ myDFGColor ++ "' -fn '" ++ myFont ++ "'"
+myRight = "/home/anand/.dzen/right.zsh | dzen2 -xs 2 -y '0' -h '20' -ta 'r' -bg '" ++ myDBGColor ++ "' -fg '" ++ myDFGColor ++ "' -fn '" ++ myFont ++ "'"
+myFont = "DroidSans-Bold.ttf" 
  
 -- Layout Hook
 mylayoutHook = smartBorders $ avoidStruts $ lessBorders (Combine Difference Screen OnlyFloat) (Mirror tiled ||| tiled ||| fullscreenLayout)

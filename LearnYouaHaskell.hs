@@ -2,6 +2,10 @@
 --filetype=cpp:expandtab:shiftwidth=2:tabstop=8:softtabstop=2
 
 import Data.List
+import Data.Char
+import Data.Function
+import qualified Data.Map as Map
+import qualified Data.Set as Set
 
 removeNonUppercase:: [Char] -> [Char]
 removeNonUppercase st = [c |c <- st,c `elem` ['A'..'Z']]
@@ -278,10 +282,47 @@ bubble (a:b:c) | a < b = a : bubble (b:c)
 bubble (a:[]) = [a] 
 bubble [] = []
 
-loop :: (Num a, Ord a) => a -> (t -> t) -> t -> t
+loop ::  (Num a, Ord a) => a -> (t -> t) -> t -> t
 loop count f x | count > 0 = loop (count -1) f x'
 			   | otherwise = x
 			   where x' = f x
 
 bubbleSort :: (Ord a) => [a] -> [a]
 bubbleSort a = loop (length a -2) bubble a
+
+
+encode :: Int -> String -> String
+encode shift msg = map (chr . (+ shift) . ord) msg
+--encode shift msg =
+--    let ords = map ord msg
+--        shifted = map (+ shift) ords
+--    in map chr shifted
+
+decode :: Int -> String -> String
+decode shift msg = encode (negate shift) msg
+
+findKey :: (Eq k) => k -> [(k,v)] -> Maybe v
+--findKey key xs = snd . head . filter (\(k,v) -> key == k) $ xs
+--findKey key [] = Nothing
+--findKey key ((k,v):xs) = if (key == k)
+--                            then Just v
+--                            else findKey key xs
+--
+findKey key = foldr (\(k,v) acc -> if key == k then Just v else acc) Nothing
+
+
+
+fromList' :: (Ord k) => [(k,v)] -> Map.Map k v
+fromList' = foldr (\(k,v) acc -> Map.insert k v acc) Map.empty
+
+
+phoneBookToMap :: (Ord k) => [(k, String)] -> Map.Map k String
+phoneBookToMap xs = Map.fromListWith (\number1 number2 -> number1 ++ ", " ++ number2) xs
+
+
+setNub xs = Set.toList $ Set.fromList xs
+
+
+surface :: Shape -> Float
+surface (Circle _ _ r) = pi * r ^ 2
+surface (Rectangle x1 y1 x2 y2) = (abs $ x2 - x1) * (abs $ y2 - y1)
