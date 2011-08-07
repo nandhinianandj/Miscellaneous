@@ -138,7 +138,8 @@ treeElem x (Node a left right)
 
 data TrafficLight = Red | Yellow | Green
 
-instance Eq TrafficLight where
+instance Eq TrafficLight 
+    where
     Red == Red == True
     Green == Green == True
     Yellow == Yellow == True
