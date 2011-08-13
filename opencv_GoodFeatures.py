@@ -7,6 +7,11 @@ import sys
 from copy import deepcopy
 import pdb
 
+def move_images_to_folder(size=(),from_folder,to_folder):
+   # for file in
+    for file_tuple in os.walk(from_folder)
+    pass
+
 def main():
 
     base_path = os.path.dirname(sys.argv[1])
