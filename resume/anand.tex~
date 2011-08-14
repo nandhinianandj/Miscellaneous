@@ -1,0 +1,30 @@
+% LaTeX file for resume 
+% This file uses the resume document class (res.cls)
+
+\documentclass[margin]{res} 
+% the margin option causes section titles to appear to the left of body text 
+\textwidth=5.2in % increase textwidth to get smaller right margin
+%\usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
+%\usepackage{newcent}   % uses new century schoolbook postscript font 
+
+\begin{document} 
+ 
+\name{Anand Jeyahar\\[12pt]} % the \\[12pt] adds a blank line after name
+ 
+\address{{\bf Present Address} \\ 37,4th main , Viyaka Nagar \\ Hebbal, Bangalore   \\
+        (91) 8884964145 }
+\address{{\bf Permanent Address} \\ 12 Vembar Street,Pattiveeranpatti. \\ Dindigul, 624211 \\
+         }
+
+ 
+\begin{resume} 
+
+\include {Objective}
+\include{Academic_qualifications}
+\include{Projects_academics}
+\include{Projects_corporate}
+\include{Projects_training}
+\include{Miscellaneous}
+
+\end{resume} 
+\end{document} 
