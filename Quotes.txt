@@ -123,3 +123,6 @@ Revenge is a dish, best served at 0 K.
 		
 Decision making is the science and/or art of navigating through the space of problem sets.
 		~Aang Jie
+
+Trust is a complex variable.
+		~Aang Jie
