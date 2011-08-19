@@ -19,7 +19,7 @@ def main():
     quotes = quote_lines.split("~Aang Jie")
     quote_count = random.choice(range(len(quotes)))
 
-    signature = "Thanks and Regards\n" + "Anand Jeyahar\n"
+    signature = "Thanks and Regards\n" + "Anand Jeyahar\n" + "http://coderwall.com/anandjeyahar\n"
 
     sep = '='
     signature = signature + line_sep(sep)   
