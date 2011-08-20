@@ -80,7 +80,7 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-=======
+*.swp
 *.aux
 *.bbl
 *.blg
@@ -104,3 +104,4 @@ docs/_build/
 *.nav
 *.snm
 *.vrb
+*.o
