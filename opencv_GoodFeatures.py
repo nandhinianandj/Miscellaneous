@@ -2,17 +2,32 @@
 
 #TODO: Use object identifications. And then try to train an ML algorithm for those objects.
 import os
-from cv2 import cv
+import cv
 import sys
 from copy import deepcopy
-import pdb
 
-def move_images_to_folder(size=(),from_folder,to_folder):
-   # for file in
-    for file_tuple in os.walk(from_folder)
+
+def move_images_to_folder(from_folder,to_folder):
+    # for file in
+    #for file_tuple in os.walk(from_folder)
     pass
 
-def main():
+def check_image_size(image,size):
+    image = cv.LoadImageM(image)
+    if image.cols < size[0] and image.rows < size[1]:
+        return True
+    else:
+        return False
+
+def delete_small_images(folder,size):
+    for img_file in os.listdir(folder):
+        if not os.path.isdir(os.path.join(folder,img_file)):
+            if check_image_size(os.path.join(folder,img_file),size):
+                os.remove(os.path.join(folder,img_file))
+                print "Removing file:" + os.path.join(folder,img_file)
+
+
+def good_features():
 
     base_path = os.path.dirname(sys.argv[1])
     pics = os.listdir(sys.argv[1])
@@ -33,19 +48,26 @@ def main():
         x_coordinates = []
         y_coordinates = []
 
-        pdb.set_trace()
 
         for (x,y) in cv.GoodFeaturesToTrack(img_gray,eig_image,temp_image,5,0.04,10.0,useHarris = True):
             BestFeatures.append((x,y))
-        
+
 
         for feature in BestFeatures:
             x_coordinates.append(feature[0])
             y_coordinates.append(feature[1])
 
-            
+
         sub_image = cv.GetSubRect(image,(int(min(x_coordinates)),int(min(y_coordinates)),int(max(x_coordinates)),int(max(y_coordinates))))
         cv.SaveImage(os.path.join(base_path,"OpenCV_BestFeatures",picture))
+
+
+def main():
+    size = (1600,1200)
+    if sys.argv[1] == 'goodfeatures':
+        goodfeatures()
+    elif sys.argv[1] == 'delete':
+        delete_small_images(sys.argv[2],size)
 
 
 if __name__ == '__main__':

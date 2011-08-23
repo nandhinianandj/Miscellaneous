@@ -1,6 +1,7 @@
 import System.IO
 import System.Random
-main = do 
+
+getLines = liftM lines . readFile
+main = do
   contents <- readFile "/home/anand/workspace/my_projects/Miscellaneous/Quotes.txt"
-  let Quotes = split "~Aang Jie" contents
-  writeFile "/home/anand/.signature" rand_quote
+  mapM_ putStrLn contents
