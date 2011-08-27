@@ -13,6 +13,9 @@ withFile' path mode f = do
 pickRandom :: Int -> IO Int
 pickRandom x = getStdRandom (randomR (1,x))
 
+--extractRandomLine :: (Int -> IO Int)=> [[Char]] -> [Char]
+extractRandomLine f str = head (drop (f (length str)) str)
+
 main = do
   quotes_handle <- openFile "../Quotes.txt" ReadMode
   sign_handle <- openFile "/home/anand/.signature" WriteMode
@@ -23,7 +26,6 @@ main = do
       no_of_quotes = length quotes
       rand_no = pickRandom no_of_quotes
 
-  putStr $ show (head (drop (rand_no-1) (unlines quotes)))
   hClose quotes_handle
   hClose sign_handle
 
