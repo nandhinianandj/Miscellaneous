@@ -6,6 +6,11 @@ import cv
 import sys
 from copy import deepcopy
 
+def detect_face():
+    storage = cv.CreateMemStorage()
+    haar = cv.LoadHaarClassifierCascade('haarcascade_frontalface_default.xml')
+    detected = cv.HaarDetectObjects(image,haar,storage, 2,cv.CV_HAAR_DO_CANNY_PRUNING,(100,100))
+    return detected
 
 def move_images_to_folder(from_folder,to_folder):
     # for file in
