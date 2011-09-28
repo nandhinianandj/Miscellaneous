@@ -80,6 +80,7 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+*.pyc
 *.swp
 *.aux
 *.bbl
