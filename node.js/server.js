@@ -1,5 +1,5 @@
 var http = require("http");
-var response= http.response;
+var url = require("url");
 
 function response_say(word,response)
   {
@@ -20,12 +20,15 @@ function print_word_on_console(word)
   console.log(word)
   }
 
-function start() {
+function start(route,handle) {
   function onRequest(request,response) {
-  print_word_on_console("Request recieved");
-  response.writeHead(200,{"Content-Type":"text/plain"});
-  response_say("Hello, javascript",response);
-  response.end()
+    var pathname = url.parse(request.url).pathname;
+    print_word_on_console("Request recieved for " + pathname);
+
+    response.writeHead(200,{"Content-Type":"text/plain"});
+    response_say("Hello, javascript",response);
+    response.write(route(handle,pathname));
+    response.end()
   }
 
   http.createServer(onRequest).listen(8888);

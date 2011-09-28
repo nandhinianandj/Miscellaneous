@@ -6,8 +6,9 @@ import datetime
 
 log_file = '/home/anand/.sys_entropy.log'
 
+out_fd = open(log_file,'a',0)
+
 def main():
-    out_fd = open(log_file,'a')
     date = datetime.datetime.utcnow()
     out_fd.write("Date: %s\n"%date)
 
@@ -19,13 +20,20 @@ def main():
     proc_fd.close()
     out_fd.write("\nAvailable entropy value(from procfs):%s\n"%avail_entropy)
 
-    t = timeit.Timer(number=1)
-    t.timeit(os_system_dd,number=1)
-    os.remove('sys_entropy_random')
+    t = timeit.Timer(os_system_dd)
+    out_fd.write("Timer output: %f"%t.timeit(1))
+    os.remove('/home/anand/sys_entropy_random')
     out_fd.close()
 
 def os_system_dd():
-    subprocess.call('dd','if=/dev/random of=sys_entropy_random bs = 1M count = 500')
+    global out_fd
+    out_fd.write("executing the time dd command\n")
+    cmd_list = ['dd','if=/dev/random', 'of=/home/anand/sys_entropy_random', 'bs=1M' ,'count=500']
+#    subprocess.call(cmd_list,stdout=out_fd)
+    #import pdb;pdb.set_trace()
+    proc = subprocess.Popen(cmd_list,stdout = out_fd,stderr=out_fd)
+    proc.wait()
+
 
 
 if __name__ == '__main__':
