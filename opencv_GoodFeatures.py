@@ -27,9 +27,14 @@ def check_image_size(image,size):
 def delete_small_images(folder,size):
     for img_file in os.listdir(folder):
         if not os.path.isdir(os.path.join(folder,img_file)):
-            if check_image_size(os.path.join(folder,img_file),size):
+            try:
+                if check_image_size(os.path.join(folder,img_file),size):
+                    os.remove(os.path.join(folder,img_file))
+                    print "Removing file:" + os.path.join(folder,img_file)
+            except Exception,e:
+                print e,os.path.join(folder,img_file)
                 os.remove(os.path.join(folder,img_file))
-                print "Removing file:" + os.path.join(folder,img_file)
+                continue
 
 
 def good_features():

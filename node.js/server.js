@@ -22,13 +22,10 @@ function print_word_on_console(word)
 
 function start(route,handle) {
   function onRequest(request,response) {
+    var postData = "";
     var pathname = url.parse(request.url).pathname;
     print_word_on_console("Request recieved for " + pathname);
-
-    response.writeHead(200,{"Content-Type":"text/plain"});
-    response_say("Hello, javascript",response);
-    response.write(route(handle,pathname));
-    response.end()
+    route(handle,pathname,response,request);
   }
 
   http.createServer(onRequest).listen(8888);

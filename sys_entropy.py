@@ -10,7 +10,7 @@ out_fd = open(log_file,'a',0)
 
 def main():
     date = datetime.datetime.utcnow()
-    out_fd.write("Date: %s\n"%date)
+    out_fd.write("\n Date: %s\n"%date)
 
     uptime_proc = subprocess.Popen('uptime',stdout=out_fd)
 
@@ -18,10 +18,10 @@ def main():
     proc_fd = open('/proc/sys/kernel/random/entropy_avail')
     avail_entropy = int(proc_fd.read().strip('\n'))
     proc_fd.close()
-    out_fd.write("\nAvailable entropy value(from procfs):%s\n"%avail_entropy)
+    out_fd.write("Available entropy value(from procfs):%s\n"%avail_entropy)
 
     t = timeit.Timer(os_system_dd)
-    out_fd.write("Timer output: %f"%t.timeit(1))
+    out_fd.write("Timer output: %f\n"%t.timeit(1))
     os.remove('/home/anand/sys_entropy_random')
     out_fd.close()
 
