@@ -3,35 +3,45 @@ import sys, os
 import subprocess
 import timeit
 import datetime
+import json
 
-log_file = '/home/anand/.sys_entropy.log'
 
-out_fd = open(log_file,'a',0)
+log_file = '/home/anand/.sys_entropy/.sys_entropy.log'
+log_fd = open(log_file,'a',0)
+
+res_file = '/home/anand/.sys_entropy/sys_entropy'
+res_fd = open(res_file,'a',0)
 
 def main():
+    out_dict = dict()
     date = datetime.datetime.utcnow()
-    out_fd.write("\n Date: %s\n"%date)
+    out_dict.update({'Date:':date})
+    log_fd.write("\n Date: %s\n"%date)
 
-    uptime_proc = subprocess.Popen('uptime',stdout=out_fd)
+
+    uptime_proc = subprocess.Popen('uptime',stdout=log_fd)
 
     #Available entropy from the /proc fs
     proc_fd = open('/proc/sys/kernel/random/entropy_avail')
     avail_entropy = int(proc_fd.read().strip('\n'))
     proc_fd.close()
-    out_fd.write("Available entropy value(from procfs):%s\n"%avail_entropy)
+    out_dict.update({'Available entropy(procfs)':avail_entropy})
+    log_fd.write("Available entropy value(from procfs):%s\n"%avail_entropy)
 
     t = timeit.Timer(os_system_dd)
-    out_fd.write("Timer output: %f\n"%t.timeit(1))
+    t_result = t.timeit(1)
+    out_dict.update({'Timer result':t_result})
+    log_fd.write("Timer output: %f\n"%t_result)
+    res_fd.write(json.dumps(out_dict))
     os.remove('/home/anand/sys_entropy_random')
-    out_fd.close()
+    log_fd.close()
+    res_fd.close()
 
 def os_system_dd():
-    global out_fd
-    out_fd.write("executing the time dd command\n")
+    global log_fd
+    log_fd.write("executing the time dd command\n")
     cmd_list = ['dd','if=/dev/random', 'of=/home/anand/sys_entropy_random', 'bs=1M' ,'count=500']
-#    subprocess.call(cmd_list,stdout=out_fd)
-    #import pdb;pdb.set_trace()
-    proc = subprocess.Popen(cmd_list,stdout = out_fd,stderr=out_fd)
+    proc = subprocess.Popen(cmd_list,stdout = log_fd,stderr=log_fd)
     proc.wait()
 
 
