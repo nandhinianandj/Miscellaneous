@@ -1,0 +1,6 @@
+Disclaimer: This was written as part of the wnframework, while working there as an employee. http://code.google.com/p/wnframework/
+
+Just a basic python wrapper for most of the Mysql Admin commands. Got tired of having to exit python and going to mysql shell for the same. Been using it in production on mysql Ver 14.12 Distrib 5.0.77, for some time(occasionally tried or percona too).
+though no proper test cases/testing has been done....
+ Couldn't find a package, so wrote this one..please point out if there is one already.... so that can be merged....
+

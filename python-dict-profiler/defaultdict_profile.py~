@@ -1,0 +1,29 @@
+import default_dict
+import cProfile
+import sys
+
+size = int(sys.argv[1])
+big_dict = {}
+keys = xrange(size)
+for key in keys:
+	big_dict.update({key:str(key)})
+
+
+def defaultdict_try_test():
+	a = default_dict.defaultdict_try(big_dict,'try')
+	print a['No']
+
+
+def defaultdict_in_test():
+	a = default_dict.defaultdict_in(big_dict,'in')
+	print a['None']
+
+	
+def main():
+	Prof = cProfile.Profile()
+	Prof.runcall(defaultdict_try_test)
+	Prof.runcall(defaultdict_in_test)
+	Prof.print_stats()
+
+if __name__ == '__main__':
+	main()
