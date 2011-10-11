@@ -15,7 +15,7 @@ res_fd = open(res_file,'a',0)
 def main():
     out_dict = dict()
     date = datetime.datetime.utcnow()
-    out_dict.update({'Date:':date})
+    out_dict.update({'Date:':date.isoformat()})
     log_fd.write("\n Date: %s\n"%date)
 
 

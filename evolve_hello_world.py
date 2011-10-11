@@ -50,8 +50,8 @@ def main1():
         fitval_m = fitness(m,target)
         source = m
         print "%5i %5i %14s" %(i, fitval_m,m)
-    if fitval == 0:
-        break
+        if fitval == 0:
+            break
 
 def main2():
     while True:
