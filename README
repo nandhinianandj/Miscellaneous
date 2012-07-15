@@ -1,5 +1,7 @@
 Just a bunch of scripts i use/wrote/learnt during playtime.
 
+Warning: Some of the codes are stolen from snippets on the web, here and there. 
+
 TODO:
     1.Create the Haskell Prime sieve module and write the functions
         Eratosthenes sieve,Euler's sieve etc.
