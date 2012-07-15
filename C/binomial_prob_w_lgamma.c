@@ -1,3 +1,11 @@
+#include <math.h>
+#include <stdio.h>
+
+double long_factorial(double n)
+{
+  return exp(lgamma(n));
+}
+
 
 double probability(double p, double q, int m, int n)
 {
