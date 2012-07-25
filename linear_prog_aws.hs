@@ -42,7 +42,7 @@ dailyCost loadPattern = let
 -- on meeting the load at any instant the combination of all
 -- services should satisfy load demand.
 
-    capacityConstraints loadPattern = [ (linCombination (
+capacityConstraints loadPattern = [ (linCombination (
                                             [ (1.0, "onDemand_" ++ period) ]
                                           ++[(1.0, "reserved_" ++ k ++ "_" ++ period) | k <- reservationTypes]
                                           ),
@@ -52,9 +52,13 @@ dailyCost loadPattern = let
 
 -- reservationConstraints
 
-reservationConstraints loadPattern = [ linCombination [ (1.0, "reservation_" ++ k),
-                                      (-1.0, "reserved_" ++ k ++ "_" ++ p) ],0.0  |
-                                      p <- (Map.keys loadPattern),
+reservationConstraints loadPattern = 
+                            [ (linCombination( 
+                              [ (1.0, "reservation_" ++ k) ]
+
+                              ++[(-1.0, "reserved_" ++ k ++ "_" ++ p) ]
+                              ),
+                              0.0)  |p <- (Map.keys loadPattern),
                                       k <- reservationTypes ]
 
 
@@ -90,11 +94,11 @@ lp loadPattern = execLPM $ do
 
 printLPSolution loadPattern = do
   x <- glpSolveVars mipDefaults (lp loadPattern)
-  putStrLN (show (allVariables loadPattern))
+  putStrLn (show (allVariables loadPattern))
   case x of (Success, Just (obj,vars)) -> do
                           putStrLn "Success!"
                           putStrLn ("Cost: " ++ (show obj))
-                          putStrLN ("Variables: " ++ (show vars))
+                          putStrLn ("Variables: " ++ (show vars))
             (failure, result) -> putStrLn ("Failure: " ++ (show failure))
 
 
