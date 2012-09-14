@@ -1,6 +1,15 @@
+
 Just a bunch of scripts i use/wrote/learnt during playtime.
 
-Warning: Some of the codes are stolen from snippets on the web, here and there. 
+
+Warning: Some of the codes are stolen/copied from snippets on the web, here and there, i wanted to try it out and so i just copied and ran it. 
+
+That's one of the reasons i haven't added any license here
+(because i can't fucking go around reading all the licenses i copy code from 
+and see how they can be compatible with what i chose for this one.that way i'll never get anything done.)
+
+If your code is in here, and you don't want it to be, please drop me a message/mail with a link to your original and i'll be happy to remove it from here.
+
 
 TODO:
     1.Create the Haskell Prime sieve module and write the functions
