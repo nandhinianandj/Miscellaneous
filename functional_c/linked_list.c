@@ -130,8 +130,14 @@ int main(int argc, char * argv[])
 
 //  int32_t my_array[] = {2,5,6,1,9,23,7653,12,0,4};
   int32_t my_array[] = {}; // = argv;
-
-  for (int i=0;i<argc;++i)
+ 
+//  void_map_array(printf,sizeof(argv),argv);
+  //for (int j=0; j<argc;++j)
+  //{
+  //  printf("%s\n",argv[j]);
+  //  printf("%d \n",atoi(argv[j]));
+  //}
+  for (int i=1;i<argc;++i)
   {
     my_array[i] = atoi(argv[i]);
   }
