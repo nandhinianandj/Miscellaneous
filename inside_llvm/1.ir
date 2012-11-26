@@ -1,0 +1,17 @@
+typedef char *__builtin_va_list;
+int foo(int aa, int bb, int cc) (CompoundStmt 0x9c75f18 <1.c:3:31, line:6:1>
+  (DeclStmt 0x9c75e90 <line:4:3, col:20>
+    0x9c75df0 "int sum =
+      (BinaryOperator 0x9c75e78 <col:13, col:18> 'int' '+'
+        (ImplicitCastExpr 0x9c75e58 <col:13> 'int' <LValueToRValue>
+          (DeclRefExpr 0x9c75e24 <col:13> 'int' lvalue ParmVar 0x9c75c40 'aa' 'int'))
+        (ImplicitCastExpr 0x9c75e68 <col:18> 'int' <LValueToRValue>
+          (DeclRefExpr 0x9c75e3c <col:18> 'int' lvalue ParmVar 0x9c75c90 'bb' 'int')))")
+  (ReturnStmt 0x9c75f08 <line:5:3, col:14>
+    (BinaryOperator 0x9c75ef0 <col:10, col:14> 'int' '/'
+      (ImplicitCastExpr 0x9c75ed0 <col:10> 'int' <LValueToRValue>
+        (DeclRefExpr 0x9c75ea0 <col:10> 'int' lvalue Var 0x9c75df0 'sum' 'int'))
+      (ImplicitCastExpr 0x9c75ee0 <col:14> 'int' <LValueToRValue>
+        (DeclRefExpr 0x9c75eb8 <col:14> 'int' lvalue ParmVar 0x9c75ce0 'cc' 'int')))))
+
+
