@@ -1,1 +1,2 @@
 1. Sum of 5th powers in two ways, which number can be represented??(might have to install pypy for speed)
+2. Test out the 7 not part of 2**x program with various ranges for x. also see if you can see a pattern in the results.
