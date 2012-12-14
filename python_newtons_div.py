@@ -1,5 +1,4 @@
-
-from mpmath.lib import giant_steps, lshift, rshift
+from mpmath.libmp.libintmath import giant_steps,lshift,rshift
 from math import log
 
 START_PREC = 15
@@ -11,6 +10,7 @@ def size(x):
     return x.numdigits(2)
 
 def newdiv(p, q):
+
     szp = size(p)
     szq = size(q)
     szr = szp - szq
