@@ -10,12 +10,14 @@ def size(x):
     return x.numdigits(2)
 
 def newdiv(p, q):
-
+    import pdb;pdb.set_trace()
     szp = size(p)
     szq = size(q)
     szr = szp - szq
     if min(szp, szq, szr) < 2*START_PREC:
         return p//q
+
+    #import pdb;pdb.set_trace()
     r = (1 << (2*START_PREC)) // (q >> (szq - START_PREC))
     last_prec = START_PREC
     for prec in giant_steps(START_PREC, szr):
@@ -24,3 +26,5 @@ def newdiv(p, q):
         r = a - b
         last_prec = prec
     return ((p >> szq) * r) >> szr
+
+
