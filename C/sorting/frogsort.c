@@ -1,6 +1,5 @@
 #include <stdio.h>
-//#include <stdlib.h>
-#include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include <sys/wait.h>
@@ -65,6 +64,53 @@ return  temp;
 }
 
 
+long int* frogsort1(long int* input)
+{
+    int w=0, status=0;
+    struct timespec req,rem;
+    pid_t pid;
+    pid_t child_pids[MAX_LIMIT];
+    long int sleep_time, *temp,ret_value,ret_val;
+
+    int i =0,ret;
+    int **pipefd;
+    
+    do 
+    {   
+        pipe(pipefd[i]);
+        execv("./sleep",(char* const *)(sleep_time));
+        switch(pid = fork())
+        {
+            case -1:
+                perror("fork failed");
+                exit(1);
+
+            case 0:
+                sleep_time = input[i];
+                write(pipefd[i][1],&sleep_time,sizeof(sleep_time));
+                close(pipefd[i][1]);
+                exit(req.tv_nsec);
+            default:
+                do {
+                    w = waitpid(pid,&status,WUNTRACED |WCONTINUED);
+                    if (WIFEXITED(status)) {
+                         printf("exited, status=%d\n", WEXITSTATUS(status));
+                         ret = read(pipefd[i][0],&ret_value,sizeof(ret_value));
+                         close(pipefd[i][0]);
+                    } else if (WIFSIGNALED(status)) {
+                         printf("killed by signal %d\n", WTERMSIG(status));
+                    } else if (WIFSTOPPED(status)) {
+                         printf("stopped by signal %d\n", WSTOPSIG(status));
+                    } else if (WIFCONTINUED(status)) {
+                         printf("continued\n");
+                    }
+                    //temp[i] = ret_value;
+                } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+        }
+    i++;
+    }while (*(input++));
+}
+
 int main(int argc,char **argv)
 {
     unsigned long int input[MAX_LIMIT], *output;
@@ -74,12 +120,14 @@ int main(int argc,char **argv)
     arg_len = argc;
     printf("No of arguments passed: %d\n",arg_len);
     malloc(sizeof(long int) *arg_len-1);
+
     for(i=0;i<arg_len-1;i++){
+
         input[i] = atol(argv[i+1]);
         
         printf("%ld\n",input[i]);
     }
-    output = frogsort(input);
+    output = frogsort1(input);
     for(i=0;i<arg_len-1;i++)
     printf("Sorted result: %ld\n",output[i]);
 error:
