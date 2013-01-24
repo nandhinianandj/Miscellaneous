@@ -12,6 +12,10 @@ def seven_in_digits_str(n):
     else:
         return False
 
+def main1(n,m):
+    p = bytearray(math.ceil(max(n,m)/8))
+    for i in range(n,m):
+        pass
 def main(n,m):
     for i in range(n, m):
         p = 2**i
