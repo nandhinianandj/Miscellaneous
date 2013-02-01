@@ -1,0 +1,1 @@
+A Profiler-rpy2 wrapper class that takes a function and its arguments, and runs it with a profiler and plots the time taken for the function to be run multiple times.

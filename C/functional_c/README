@@ -1,0 +1,6 @@
+1. The goal is to implement standard data structures of CS, in C without using a, No mutation
+   b, No malloc 
+
+   Originally inspired by the blog post at http://spin.atomicobject.com/2012/11/01/hey-c-is-a-functional-language-too/
+
+So first a linked list reversal.
