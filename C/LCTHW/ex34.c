@@ -3,7 +3,7 @@
 
 #include<stdlib.h>
 #include <assert.h>
-#include <lcthw/dbg.h
+#include "dbg.h"
 
 typedef struct DArray {
     int end;
