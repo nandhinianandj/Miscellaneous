@@ -10,13 +10,17 @@ void main()
 {
     test *A,*B;
 
+
+    A = malloc(sizeof(test *));
+    B = malloc(sizeof(test *));
+
+
     A->a = 5;
     A->b= 12.0;
     A->c = "eue";
-
-    //B = malloc(sizeof(test));
     B = (void*) A;
 
     printf("%d\t %f \t %s \n ",B->a,B->b,B->c);
-    //free(B);
+    free(A);
+    free(B);
 }
