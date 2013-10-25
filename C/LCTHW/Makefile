@@ -1,16 +1,21 @@
 FLAGS=-Wall -g
 CC=gcc
 CFLAGS=--std=c99 -g -pedantic -Wall -lm
-SOURCES := $(wildcard ex[0-9]*.c)
-#all: ex19 ex20 ex21 ex22 ex23 ex24 ex25 ex26 ex27 ex28 ex29 ex30 ex31 ex32 ex33 ex34 ex35
+PROGRAMS_SRC=$(wildcard bin/*.c)
+PROGRAMS=$(patsubst %.c,%,$(PROGRAMS_SRC))
+OBJECTS=$(patsubst %.c,%.o,$(PROGRAMS_SRC))
+TARGETS=$(patsubst %.c,%,$(PROGRAMS_SRC))
 
-all: $(wildcard ex[0-9]*.c)
+all: 
+	echo $(OBJECTS)
+	echo $(TARGETS)
+	$(TARGET) $(SO_TARGET) tests $(PROGRAMS)
 
-ex19: object.o
 
 clean:
-	  rm -f ex19 object.o
+	  rm -rf $(OBJECTS) $(TESTS) $(PROGRAMS)
 
+$(PROGRAMS): CFLAGS += $(TARGET)
 test: 
 	test_game
 	./test_game

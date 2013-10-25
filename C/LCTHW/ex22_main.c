@@ -1,4 +1,5 @@
 #include "ex22.h"
+#include "ex22.c"
 #include "dbg.h"
 
 const char *MY_NAME = "Anand Jeyahar";
