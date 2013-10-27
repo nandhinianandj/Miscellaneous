@@ -1,3 +1,6 @@
 [submodule "simplebitmapbenchmark"]
 	path = simplebitmapbenchmark
 	url = ./simplebitmapbenchmark/
+[submodule "6803958"]
+	path = 6803958
+	url = https://gist.github.com/6803958.git
