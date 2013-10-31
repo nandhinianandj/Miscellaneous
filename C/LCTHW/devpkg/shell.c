@@ -44,11 +44,11 @@ error:
 
 int Shell_run(apr_pool_t *p, Shell *cmd)
 {
-    apr_procatt_t *attr;
+    apr_procattr_t *attr;
     apr_status_t rv;
     apr_proc_t newproc;
 
-    rv = apr_procattr_io_set(&attr,p);
+    rv = apr_procattr_create(&attr,p);
     check(rv == APR_SUCCESS, "Failed to create proc attr.");
 
     rv = apr_procattr_io_set(attr,APR_NO_PIPE,APR_NO_PIPE,APR_NO_PIPE);

@@ -3,6 +3,8 @@
 #include <apr_getopt.h>
 #include <apr_strings.h>
 #include <apr_lib.h>
+#include <apr_pools.h>
+#include <apr_uri.h>
 
 #include "dbg.h"
 #include "db.h"
@@ -55,7 +57,7 @@ int main(int argc, const char const *argv[])
                 break;
 
             case 'F':
-                request = COMMAND_FETCH:
+                request = COMMAND_FETCH;
                 break;
 
             case 'B':

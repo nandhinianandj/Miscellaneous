@@ -2,6 +2,7 @@
 #include <apr_fnmatch.h>
 #include <unistd.h>
 
+
 #include "commands.h"
 #include "dbg.h"
 #include "bstrlib.h"
@@ -14,7 +15,7 @@ int Command_depends(apr_pool_t *p, const char *path)
     bstring line = NULL;
 
     in = fopen(path,"r");
-    check(in != NUll, "Failed to open downloaded depends: %s",path);
+    check(in != NULL, "Failed to open downloaded depends: %s",path);
 
     for(line = bgets((bNgetc)fgetc,in,'\n');
         line != NULL;
@@ -51,7 +52,7 @@ int Command_fetch(apr_pool_t *p, const char *url, int fetch_only)
         check(!fetch_only, "No point in fetching a DEPENDS file.");
 
         if(info.scheme) {
-            depends_file = DEPEND_PATH;
+            depends_file = DEPEND_PAT;
             rc = Shell_exec(CURL_SH,"URL",url,"TARGET",depends_file,NULL);
             check(rc == 0,"Curl failed.");
 
@@ -60,7 +61,7 @@ int Command_fetch(apr_pool_t *p, const char *url, int fetch_only)
         }
 
         log_info("Building according to DEPENDS: %s",url);
-        rv = Command_dpends(p,depends_file);
+        rv = Command_depends(p,depends_file);
         check(rv == 0,"Failed to process the DEPENDS: %s",url);
 
         return 0;
