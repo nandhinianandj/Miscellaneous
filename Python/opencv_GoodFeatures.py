@@ -75,7 +75,7 @@ def good_features():
 def main():
     size = (1600,1200)
     if sys.argv[1] == 'goodfeatures':
-        goodfeatures()
+        good_features()
     elif sys.argv[1] == 'delete':
         delete_small_images(sys.argv[2],size)
 

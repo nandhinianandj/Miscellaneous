@@ -1,3 +1,4 @@
+import random
 def fitness(source,target):
     fitval = 0
     for i in range(0,len(source)):
@@ -65,3 +66,8 @@ def main2():
         child = mutate(parent1,parent2)
         if child['fitness'] < genepool[-1]['fitness']:
             genepool[-1] = child
+
+
+
+if __name__ ==  '__main__':
+    main()
