@@ -5,5 +5,4 @@ CPPFLAGS=I/usr/local/include/opencv2
 all:
 	$(foreach var,$(PROGRAMS_SRC),g++ $(var) -o $(patsubst %.c, %,$(var)) -$(CPPFLAGS); )
 
-#clean:
-#	rm -rf
+
