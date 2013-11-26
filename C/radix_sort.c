@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+//#include <conio.h>
 
 #define MAX 5
 #define SHOWPASS
@@ -50,7 +50,7 @@ int main()
 {
     int arr[MAX];
     int i,n;
-    clrscr();
+    //clrscr();
     printf("Enter Total elements (n <= %d) :",MAX);
     scanf("%d",&n);
     n = n < MAX ? n :MAX;
