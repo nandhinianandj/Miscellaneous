@@ -3,6 +3,7 @@ module BST
 , singleton
 , treeInsert
 , treeElem
+, fmap
 ) where
 
 data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show, Read, Eq)
@@ -24,5 +25,37 @@ treeElem x (Node a left right)
     | x == a = True
     | x < a = treeElem x left
     | x > a = treeElem x right
+
+
+--class Functor f where
+--    fmap :: (a -> b) -> f a -> f b
+--instance Functor [] where
+--    fmap = map
+--instance Functor Maybe where
+--    fmap f (Just x) = Just (f x)
+--    fmap f Nothing = Nothing
+--
+--instance Functor Tree where
+--    fmap f EmptyTree = EmptyTree
+--    fmap f (Node x leftsub rightsub)
+--
+--instance Functor (Either a) where
+--    fmap f (Right x) = Right (f x)
+--    fmap f (Left x) = Left x
+--
+--data Either a b = Left a | Right b
+--
+--instance Functor Tree where
+--    fmap f EmptyTree = EmptyTree
+--    fmap f (Node x leftsub rightsub) = Node (f x) (fmap f leftsub) (fmap f rightsub)
+--
+--instance Functor (Either a) where
+--    fmap f (Right x) = Right (f x)
+--    fmap f (Left x) Left (f x)
+--
+-- data Either a b = Left a | Right b
+--
+--
+--
 
 
