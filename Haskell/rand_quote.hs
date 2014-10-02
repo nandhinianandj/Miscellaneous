@@ -14,14 +14,14 @@ splitSingle delimiter xs =
 
 --getLines = liftM lines . readFile
 
---pickRandom :: (Num (([a]->Int) ->[String] ->(Int,Int)))
-pickRandom x = randomRIO (0,length x) >>= return .(x !!)
+pickRandom :: [String] -> String
+pickRandom [strList] = strList !! getStdRandom (randomR (1, length strList))
 
 --getRandomQuote str = pickRandom (str)
 main = do
-  contents <- readFile "/home/anand/workspace/my_projects/Miscellaneous/Quotes.txt"
-  let delimit = "~Aang Jie"
---  let quotes = splitByDelimiter delimit contents
-  let quotes = lines contents
-  let sign = pickRandom quotes
-  sign
+  contents <- readFile "/home/anand/workspace/github_stuff_private/wordpress_blog_posts/pages/quotes"
+  let allQuotes = lines contents
+  putStr allQuotes
+  putStr (allQuotes !! 1)
+  let sign = pickRandom allQuotes
+  putStr (allQuotes !! 1)
