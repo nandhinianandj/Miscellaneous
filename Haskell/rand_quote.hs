@@ -15,13 +15,13 @@ splitSingle delimiter xs =
 --getLines = liftM lines . readFile
 
 pickRandom :: [String] -> String
-pickRandom [strList] = strList !! getStdRandom (randomR (1, length strList))
+pickRandom [strList] = do
+    index <- getStdRandom (randomR (0, length strList))
+    strList !! fromIntegral index
 
---getRandomQuote str = pickRandom (str)
+
 main = do
   contents <- readFile "/home/anand/workspace/github_stuff_private/wordpress_blog_posts/pages/quotes"
   let allQuotes = lines contents
-  putStr allQuotes
-  putStr (allQuotes !! 1)
   let sign = pickRandom allQuotes
-  putStr (allQuotes !! 1)
+  putStr (sign)
