@@ -17,8 +17,8 @@ splitSingle delimiter xs =
 pickRandom :: [String] -> String
 pickRandom [strList] = do
     index <- getStdRandom (randomR (0, length strList))
+    putStr index
     strList !! fromIntegral index
-
 
 main = do
   contents <- readFile "/home/anand/workspace/github_stuff_private/wordpress_blog_posts/pages/quotes"
