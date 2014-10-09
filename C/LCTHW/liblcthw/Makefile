@@ -10,7 +10,7 @@ OBJECTS=$(patsubst %.c,%.o,$(TEST_SRC))
 TEST_SRC=$(wildcard tests/* tests.c)
 TESTS=$(patsubst %.a,%.so,$(TARGET))
 
-TARGET=build/libYOUR_LIBRARY.a
+TARGET=build/liblist.a
 SO_TARGET=$(patsubst %.a,%.so,$(TARGET))
 
 all: $(TARGET) $(SO_TARGET) tests
@@ -26,7 +26,7 @@ $(TARGET): CFLAGS += -fPIC
 
 #$(SO_TARGET): $(TARGET) $(OBJECTS)
 #		$(CC) -shared -o $@ $(OBJECTS)
-	
+
 build:
 		@mkdir -p build
 		@mkdir -p bin
@@ -40,7 +40,7 @@ tests:	$(TESTS)
 valgrind:
 		VALGRIND="valgrind --log-file=/tmp/valgrind-%p.log" $(MAKE)
 
-clean: 
+clean:
 		echo $(OBJECTS)
 		echo $(TESTS)
 		rm -rf build $(OBJECTS) $(TESTS)
