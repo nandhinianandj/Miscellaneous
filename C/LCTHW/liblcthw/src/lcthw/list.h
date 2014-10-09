@@ -13,7 +13,7 @@ typedef struct ListNode {
 
 } ListNode;
 
-typedef struct List {a
+typedef struct List {
     int count;
     ListNode *first;
     ListNode *last;

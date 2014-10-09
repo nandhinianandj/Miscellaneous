@@ -10,7 +10,7 @@ OBJECTS=$(patsubst %.c,%.o,$(TEST_SRC))
 TEST_SRC=$(wildcard tests/* tests.c)
 TESTS=$(patsubst %.a,%.so,$(TARGET))
 
-TARGET=build/liblist.a
+TARGET=build/list.a
 SO_TARGET=$(patsubst %.a,%.so,$(TARGET))
 
 all: $(TARGET) $(SO_TARGET) tests
@@ -19,9 +19,9 @@ dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra $(OPTFLAGS)
 dev: all
 
 $(TARGET): CFLAGS += -fPIC
-#$(TARGET): build $(OBJECTS)
-#		ar rcs $@ $(OBJECTS)
-#		ranlib $@
+$(TARGET): build $(OBJECTS)
+		ar rcs $@ $(OBJECTS)
+		ranlib $@
 
 
 #$(SO_TARGET): $(TARGET) $(OBJECTS)
