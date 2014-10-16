@@ -22,3 +22,4 @@ circConv xs ys = map (innerProd xs) ys
                   ys' = (circShiftR . reverse) ys
                   yss = take n (iterate circShiftR ys')
 
+main = do return Nothing

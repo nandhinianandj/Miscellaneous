@@ -26,7 +26,6 @@ treeElem x (Node a left right)
     | x < a = treeElem x left
     | x > a = treeElem x right
 
-data Options = {test :: String}
 --class Functor f where
 --    fmap :: (a -> b) -> f a -> f b
 --instance Functor [] where
