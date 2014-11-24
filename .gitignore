@@ -3,6 +3,7 @@ listcopy
 strictbytestring
 devpkg
 ex*
+*.class
 *.pyc
 *.swp
 *.aux
