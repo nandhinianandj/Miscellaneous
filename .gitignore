@@ -6,6 +6,7 @@ listcopy
 strictbytestring
 devpkg
 ex*
+*.beam
 *.class
 *.pyc
 *.swp
