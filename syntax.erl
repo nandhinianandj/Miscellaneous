@@ -9,7 +9,25 @@ Person = {person, {name, "Agent Smith"}, {profession, "killing programs}}.
 Name.
 
 
+%Case statement for control flow
+Animal = "dog".
+case Animal of
+    "dog"   -> underdog;
+    "cat"   -> thundercat
+end.
 
+case Animal of
+    "elephant" -> dumbo;
+    _ -> "not elephant"
+end.
+
+if
+    ProgramsTerminated > 0 ->
+        success;
+    ProgramsTerminated < 0 ->
+        error;
+    true -> zero
+end.
 
 
 
