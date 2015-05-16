@@ -28,4 +28,24 @@
     -- complexity? well the recursion means, something like log(n)?(base 2 of course)
     -- and the rest of the multiplications? well 4 digit numbers yield 3 terms first step and then each of the 3 yield 3 so log(n)**log(n)
     -- Is that about right?? let's find out..
+1-4 Motivations for the course:
+    -- Vocabulary for design and analysis of algorithms(and hopefully correctness proofs?)
+    -- Divide and Conquer Programming paradigm(other paradigm covered in 201)
+            -- applied in Integer Multiplication, sorting, matrix multiplication, closest pair
+            -- General analysis methods, Master method/ theorem
+    -- Randomization in algorithm design
+            -- quick sort, primality testing, graph partitioning, hashing
+            --
+    -- Primitives for reasoning about graphs
+            -- connectivity information, shortest paths, structure of information, and social networks.
+    -- Use and implementation of data structures
+            -- Heaps, balanced binary search trees, hashing and some variants(like bloom filters)
+            --
+    -- Next course concepts:
+            --  Greedy algorithm design paradigm (minimal spanning trees, scheduling, information theory)
+            --  Dynamic programming algorithms(applications in genomic sequences, shortest path for communication networks)
+    -- NP-complete problems
+    -- Fast and exact algorithms for special cases
+    -- Exact algorithms that improve brute-forec approach
+
 
