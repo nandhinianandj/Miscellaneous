@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def compose2(f, g):
     return lambda x: f(g(x))
 
@@ -10,5 +11,7 @@ def compose(*functions):
 
 def sub(a, b):
     return a - b
+
+compose = λ *fs: reduce(λ f, g: λ *x: f(*g(*x)), fs)
 
 pipeline = compose(functools.partial(sub, b=4), operator.neg)
