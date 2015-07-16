@@ -1,0 +1,7 @@
+[package]
+name = "philosopher"
+version = "0.1.0"
+authors = ["Anand Jeyahar <anand.jeyahar@gmail.com>"]
+
+[dependencies]
+thread="0.0.1"
