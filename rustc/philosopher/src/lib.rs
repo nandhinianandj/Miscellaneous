@@ -55,7 +55,6 @@ fn main() {
     for h in handles {
         h.join().unwrap();
     }
-
 }
 
 

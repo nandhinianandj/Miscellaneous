@@ -3,6 +3,16 @@
 #   UniVariate Outliers
 ##################################################################
 
+def get_outliers(data, m = 2.):
+    """
+    data -- is a pandas data frame
+    """
+    # by median
+    d = np.abs(data - np.median(data))
+    mdev = np.median(d)
+    s = d/mdev if mdev else 0.
+    return data[s>m]
+
 def 3sigmaDeviation(seq, threshold=3, passes=1):
     # filter and remove values beyond +/- 3 sigma variance
     # default one pass.
