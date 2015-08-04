@@ -3,9 +3,12 @@
 #   UniVariate Outliers
 ##################################################################
 
-def get_outliers(data, m = 2.):
+def getOutliers(data, m = 2.):
     """
     data -- is a pandas data frame
+    m --- is the number of sigma deviations
+    return:
+        Simple data points more than given value times the median
     """
     # by median
     d = np.abs(data - np.median(data))
@@ -16,7 +19,10 @@ def get_outliers(data, m = 2.):
 def 3sigmaDeviation(seq, threshold=3, passes=1):
     # filter and remove values beyond +/- 3 sigma variance
     # default one pass.
-    pass
+    for i in range(passes):
+        std     = np.std(seq)
+        seq = filter(lambda x: x > std, seq)
+    return seq
 
 def interQuartileRangeDev(seq, threshold=1.5):
     # filter values beyound the +/- 1.5 quartile range
@@ -26,6 +32,13 @@ def capPercentile(seq, threshold=5):
     # filter values from the 5th and 95th percentile range
     pass
 
+def zScoreSpikes(seq, zthresh=2 ):
+    mean    = np.mean(data)
+    std     = np.std(data)
+
+    o3      = mean + (2) *std
+    o4      = mean + (-2)*std
+    pass
 
 ################################################################
 #   Multi/Bi-Variate Outliers
