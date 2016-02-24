@@ -24,7 +24,11 @@ for i in range(N):
 w1 = euclid.argmin()
 w2 = maxdev.argmin()
 
+print("Euclidean distance winner's attributes")
+print("Distance")
 print( M[w1,:] )
+print("Attributes")
 print( euclidean_norm(M[w1,:]) )
+print("least deviation from average winner's attributes")
 print( M[w2,:] )
 print( max_norm(M[w2,:]) )
