@@ -34,3 +34,5 @@ with Function("DotProduct", (x, y), float_,
 
   # This is a cross-platform way to return results. PeachPy will take care of ABI specifics.
   RETURN(xmm_x)
+
+
