@@ -1,3 +1,7 @@
+import percache
+cache = percache.Cache('/tmp/collatz-cache')
+
+@cache
 def collatz(n):
   out =[]
   while n!=1:
@@ -6,7 +10,7 @@ def collatz(n):
     else:
       n=3*n +1
     out.append(n)
-  return out
+  return len(out)
 
 for i in range(10000):
     collatz_len = {i: len(collatz(i))}
