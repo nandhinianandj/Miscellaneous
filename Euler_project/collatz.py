@@ -12,7 +12,7 @@ def collatz(n):
     out.append(n)
   return len(out)
 
-for i in range(10000):
+for i in range(1000):
     collatz_len = {i: len(collatz(i))}
 
 sorted = sorted(collatz_len.items(),key=operator.itemgetter(1))
