@@ -17,3 +17,6 @@ def starting_positions(nparray, threshold=0.5):
 
 #Heurisitc 2:
 # Create a probability matrix with peak at the center element
+def prob_matrix(size=(1000,1000)):
+    mat = np.zeros(size)
+    for
