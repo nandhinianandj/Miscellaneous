@@ -11,8 +11,9 @@ terrain_map = np.loadtxt('test_play.txt')
 # Heuristic 2: Even among the half of the starting points prune down the paths that lead to quick
 # ends(i.e, the matrix index bounds)
 
+# Heuristic 1:
+def starting_positions(nparray, threshold=0.5):
+    return np.where(nparray >= threshold*nparray.max())
 
-def starting_indexes(nparray, threshold=500):
-    ind =
-    ix = np.inldx(x.ravel()
-    return np.where(nparray >= threshold)
+#Heurisitc 2:
+# Create a probability matrix with peak at the center element
