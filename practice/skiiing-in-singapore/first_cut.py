@@ -1,3 +1,4 @@
+import networkx
 import numpy as np
 terrain_map = np.loadtxt('sample1.txt')
 
@@ -29,3 +30,5 @@ def starting_positions(nparray, threshold=0.5):
 def prob_matrix(size=(1000,1000)):
     mat = np.zeros(size)
     for
+
+
