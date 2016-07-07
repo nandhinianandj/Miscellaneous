@@ -1,6 +1,6 @@
 import networkx as nx
 import numpy as np
-
+from skimage import novice
 # This is a graph search problem with 4 edges coming out of all vertices(well except the corner
 # ones)
 # Clearly, from the description they assume the starting point is anywhere and they can
@@ -12,7 +12,17 @@ import numpy as np
 # tree problem.
 # The challenge though is the height difference at a given position depends on which position you
 # came in from. So to represent this in a graph we'll need 4 x (input matrix size in this case
-# 1000x1000)  That's huge not sure a straightforward search can be done. We might need to trim the
+# 1000x1000)  That's huge not sure a straightforward search can be done.
+
+# Ok that was wrong on multiple levels.. one:no need for that 4x component the matrix logically
+# encodes both the vertices and the edge weights contain the possible edges from any direction so
+# the edge weights will take care of it.
+
+
+# Mistake 2: Minimal spanning tree algorithm won't work, because it necessitates all vertices are
+# covered.. So will need heuristic search and may be dynamic programming  for this one.
+
+# We might need to trim the
 # graph with Heuristics before attempting:
 
 # Heuristic 1: Don't search all of the starting points cut it down to half
@@ -52,9 +62,19 @@ def main(filename='sample1.txt'):
             G.add_edge((x,y),(x, y-1), {'weight': -1 * (terrain_altitude_map[x][y-1] - value + 1)})
 
     ans = nx.minimum_spanning_tree(G,'weight')
+    agraph_ans = nx.nx_agraph.to_agraph(ans)
+    agraph_ans.layout(prog='dot')
+    png = agraph_ans.draw('answer.png')
+    #filename = agraph_ans.render(filename='img/answer')
+
+    from bokeh.plotting import figure, show
+    image = novice.open('answer.png')
+    p = figure((0, image.shape[0]),(0, image.shape[1]))
+    p.image(image=image)
+    show(p)
     for edge in ans.edges():
-        print(terrain_altitude_map[edge[0][0]][edge[0][1]] + '-')
-        print(terrain_altitude_map[edge[1][0]][edge[1][1]] + '-')
+        print(edge, G[edge[0]][edge[1]]['weight'])
+        print(str(terrain_altitude_map[edge[0][0]][edge[0][1]]) + '-' + str(terrain_altitude_map[edge[1][0]][edge[1][1]]))
 
 
 
