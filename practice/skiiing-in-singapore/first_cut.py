@@ -118,6 +118,7 @@ def greedy_search(altitude_graph, start):
                 yield parent, child
                 visited.add(child)
                 queue.append((child, neighbors[child]))
+        except
     pass
 
 def depth_first_search(altitude_graph, start):
