@@ -30,16 +30,23 @@ from skimage import novice
 # ends(i.e, the matrix index bounds)
 
 # Heuristic 1:
-def starting_positions(nparray, threshold=0.5):
-    return np.where(nparray >= threshold*nparray.max())
+def filtered_heights(nparray, low_threshold=0.5):
+    return np.where(nparray >= (1-low_threshold)*nparray.max())
 
+def starting_positions(nparray, heightList):
+    #TODO: Look for an efficient way to find these indexes
+    res = list()
+    for (x,y) , value in np.ndenumerate(nparray):
+        if value in heightList:
+            res.appnd((x,y))
+    return res
 #Heurisitc 2:
 # Create a probability matrix with peak at the center element
 # Hmm. may be that heurisitic is wrong.
 def prob_matrix(size=(1000,1000)):
     mat = np.zeros(size)
 
-def main(filename='sample1.txt'):
+def graph_mst_method(filename='sample1.txt'):
     terrain_altitude_map = np.loadtxt(filename)
     G = nx.Graph()
     # Construct a graph with nodes as a triple (x,y, prev_node)
@@ -77,7 +84,45 @@ def main(filename='sample1.txt'):
         print(str(terrain_altitude_map[edge[0][0]][edge[0][1]]) + '-' + str(terrain_altitude_map[edge[1][0]][edge[1][1]]))
 
 
+def main(filename='sample1.txt'):
+    terrain_altitude_map = np.loadtxt(filename)
+    x_idx, y_idx = filtered_heights(terrain_altitude_map, low_threshold=0.5)
+    starting_indices = list(zip(x_idx, y_idx))
+    print(starting_indices)
+    G = nx.Graph()
+    for(x,y), value in np.ndenumerate(terrain_altitude_map):
+        G.add_node((x,y))
+        if x+1 < terrain_altitude_map.shape[0]:
+            # Instead of checking for lower height just using the negative value, for now
+            G.add_edge((x,y),(x+1, y),{'weight': -1 * (value - terrain_altitude_map[x+1][y] +1) })
+        if y+1 < terrain_altitude_map.shape[1]:
+            G.add_edge((x,y),(x, y+1), {'weight':-1 * (value - terrain_altitude_map[x][y+1] + 1) })
+        if x-1 > 0:
+            G.add_edge((x,y),(x-1, y), {'weight': -1 * (terrain_altitude_map[x-1][y] - value + 1)})
+        if y-1 > 0:
+            G.add_edge((x,y),(x, y-1), {'weight': -1 * (terrain_altitude_map[x][y-1] - value + 1)})
 
+    for idx in starting_indices:
+        depth_first_search(G, start=idx)
 
+def greedy_search(altitude_graph, start):
+    from collections import deque
+    neighbors = G.neighbors_iter
+    visited = set([start])
+    queue = deque([(start, neighbors(start))])
+    while queue:
+        parent, children = queue[0]
+        try:
+            child = next(children)
+            if child not in visited:
+                yield parent, child
+                visited.add(child)
+                queue.append((child, neighbors[child]))
+    pass
+
+def depth_first_search(altitude_graph, start):
+    pass
+
+def breadh_fist
 if __name__ == '__main__':
     main()
