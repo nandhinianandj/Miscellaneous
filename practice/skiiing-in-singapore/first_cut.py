@@ -109,6 +109,7 @@ def greedy_search(altitude_graph, start):
     from collections import deque
     neighbors = G.neighbors_iter
     visited = set([start])
+
     queue = deque([(start, neighbors(start))])
     while queue:
         parent, children = queue[0]
@@ -118,7 +119,7 @@ def greedy_search(altitude_graph, start):
                 yield parent, child
                 visited.add(child)
                 queue.append((child, neighbors[child]))
-        except
+        except Exception
     pass
 
 def depth_first_search(altitude_graph, start):
