@@ -48,7 +48,7 @@ def prob_matrix(size=(1000,1000)):
 
 def graph_mst_method(filename='sample1.txt'):
     terrain_altitude_map = np.loadtxt(filename)
-    G = nx.Graph()
+    G = nx.DiGraph()
     # Construct a graph with nodes as a triple (x,y, prev_node)
     for(x,y), value in np.ndenumerate(terrain_altitude_map):
         G.add_node((x,y))
@@ -100,31 +100,31 @@ def main(filename='sample1.txt'):
             G.add_edge((x,y),(x-1, y), {'weight': -1 * (terrain_altitude_map[x-1][y] - value + 1)})
         if y-1 > 0 and value > terrain_altitude_map[x][y-1]:
             G.add_edge((x,y),(x, y-1), {'weight': -1 * (terrain_altitude_map[x][y-1] - value + 1)})
-
+    result = []
     for idx in starting_indices:
         result.append(greedy_search(G, start=idx))
 
 def greedy_search(altitude_graph, start):
     from collections import deque
-    neighbors = G.neighbors_iter
+    #neighbors = altitude_graph.out_edges(start)
+    neighbors = altitude_graph.neighbors_iter
     visited = set([start])
-    weight = 0
-    queue = deque([(start, neighbors(start))])
-    while queue:
-        parent, children = queue[0]
-        try:
-            child = next(children)
-            if child not in visited:
-                weight += G[(parent,child)['weight']
-                yield parent, child
-                visited.add(child)
-                queue.append((child, neighbors[child]))
-        except Exception
+    prev_weight = 0
+    while (ne):
+        for each in neighbors:
+            weight = altitude_graph.get_edge_data(start, each)
+            if weight > prev_weight:
+                prev_weight = weight
+                max_edge = each
+            else:
+                continue
+
     pass
 
 def depth_first_search(altitude_graph, start):
     pass
 
-def breadh_fist
+def breadth_first():
+    pass
 if __name__ == '__main__':
     main()
