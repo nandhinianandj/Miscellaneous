@@ -92,30 +92,30 @@ def main(filename='sample1.txt'):
     G = nx.Graph()
     for(x,y), value in np.ndenumerate(terrain_altitude_map):
         G.add_node((x,y))
-        if x+1 < terrain_altitude_map.shape[0]:
-            # Instead of checking for lower height just using the negative value, for now
+        if x+1 < terrain_altitude_map.shape[0] and value > terrain_altitude_map[x+1][y]:
             G.add_edge((x,y),(x+1, y),{'weight': -1 * (value - terrain_altitude_map[x+1][y] +1) })
-        if y+1 < terrain_altitude_map.shape[1]:
+        if y+1 < terrain_altitude_map.shape[1] and value > terrain_altitude_map[x][y+1]:
             G.add_edge((x,y),(x, y+1), {'weight':-1 * (value - terrain_altitude_map[x][y+1] + 1) })
-        if x-1 > 0:
+        if x-1 > 0 and value > terrain_altitude_map[x-1][y]:
             G.add_edge((x,y),(x-1, y), {'weight': -1 * (terrain_altitude_map[x-1][y] - value + 1)})
-        if y-1 > 0:
+        if y-1 > 0 and value > terrain_altitude_map[x][y-1]:
             G.add_edge((x,y),(x, y-1), {'weight': -1 * (terrain_altitude_map[x][y-1] - value + 1)})
 
     for idx in starting_indices:
-        depth_first_search(G, start=idx)
+        result.append(greedy_search(G, start=idx))
 
 def greedy_search(altitude_graph, start):
     from collections import deque
     neighbors = G.neighbors_iter
     visited = set([start])
-
+    weight = 0
     queue = deque([(start, neighbors(start))])
     while queue:
         parent, children = queue[0]
         try:
             child = next(children)
             if child not in visited:
+                weight += G[(parent,child)['weight']
                 yield parent, child
                 visited.add(child)
                 queue.append((child, neighbors[child]))
