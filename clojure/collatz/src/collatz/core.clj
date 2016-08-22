@@ -1,4 +1,4 @@
-(ns collatz.core (:require [clojure.math.numeric-tower :as math]))
+(ns collatz.core :require [clojure2minizinc.core :as mz])
 ; -- program to a, find decidability of a collatz seq.
 ; --            b, find length of a collatz seq
 ; --        given: an integer
@@ -13,7 +13,7 @@
 (defn collatz_length [[n _]]
                    (if (== n 1) 1)
                     (if (== (mod n 2) 0) (+ 1 (collatz_length [(/ n 2)]))
-                      (if (power_of_2 n) (+ 1 math/log(n,2)) (+ 1 (collatz_length[(/ n 2)])))
+                      (if (power_of_2 n) (+ 1 mz/log(n,2)) (+ 1 (collatz_length[(/ n 2)])))
                       )
                    (if not= (mod n 2) 0) (+ 1 (collatz_length [(+ 1 (/ (* 3 n )))] ))
                )
