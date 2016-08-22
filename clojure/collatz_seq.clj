@@ -9,4 +9,6 @@
 ;will have seq length 3.  So once we hit a 2^n form we can stop and find log 2 + 1, instead of
 ;generating sequence
 
-()
+(defn power_of_2 [n] (and (not= n 0) (== (bit-and n (- n 1) ) 0) ) )
+(defn collatz [ln] (defn n1 [ln] first ln) (defn n2 [[_ second]] second)
+  )
