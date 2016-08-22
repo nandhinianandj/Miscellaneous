@@ -11,42 +11,35 @@ def is_pow_of_2(num):
     #else:
     #    return false
 
-class Collatz:
-    def __init__(self, n):
-        self.num = n
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.num % 2 == 0:
-            self.num = self.num/2
-            return self.num
-        elif self.num == 1:
-            raise StopIteration
+def collatz(n, cache):
+    if n == 1:
+        return 1
+    elif n in cache.keys():
+        return cache[n]
+    elif n % 2 == 0:
+        if is_pow_of_2(int(n)):
+            cache[n] = 1 + math.log(n,2)
+            return cache[n]
         else:
-            self.num = 3 * self.num + 1
-            return self.num
+            cache[n] = 1 + collatz(n/2, cache)
+    else:
+        cache[n] = 1 + collatz(3 * n + 1, cache)
+    return cache[n]
 
-def main(n):
-    import pdb; pdb.set_trace()  # XXX BREAKPOINT
-    collatz_length = dict()
-    length = 0
-    c = Collatz(n)
-    for x in c:
-        if x in collatz_length.keys():
-            length += collatz_length[x]
-            break
-        elif is_pow_of_2(int(x)):
-            collatz_length[x] = math.log(x, 2)
-            length += collatz_length[x]
-            break
-        else:
-            length += 1
-        #print(str(x) + "\t" + str(length))
-        #print()
-    collatz_length[n] = length
-    print(collatz_length)
+def main(n1, n2):
+    cache = {}
+    lengths = []
+    m = -1
+    for x in range(n1, n2):
+        length = collatz(x, cache)
+        cache[x] = length
+        lengths.append(length)
+        if (length > m):
+            m = length
+            the_one = x
+
+    print("Max sequence: %f\n"%max(lengths))
+    print("The longest 1: %f\n"% the_one)
 
 if __name__ == '__main__':
     #import cProfile
@@ -54,4 +47,4 @@ if __name__ == '__main__':
     import sys
     #for i in range(int(sys.argv[1])):#1000000):
     #    main(i)
-    main(int(sys.argv[1]))
+    main(int(sys.argv[1]), int(sys.argv[2]))
