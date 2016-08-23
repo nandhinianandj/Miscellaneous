@@ -38,13 +38,12 @@ def main(n1, n2):
             m = length
             the_one = x
 
-    print("Max sequence: %f\n"%max(lengths))
-    print("The longest 1: %f\n"% the_one)
+    print(n1, n2, int(max(lengths)))
 
 if __name__ == '__main__':
     #import cProfile
     #cProfile.run('main()')
     import sys
-    #for i in range(int(sys.argv[1])):#1000000):
-    #    main(i)
-    main(int(sys.argv[1]), int(sys.argv[2]))
+    n1 = int(sys.argv[1])
+    n2 = int(sys.argv[2]) if len(sys.argv) > 2 else n1 + 1
+    main(n1,n2 )
