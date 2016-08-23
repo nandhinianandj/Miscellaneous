@@ -24,10 +24,10 @@
 (defn max-collatz [[na la] [nb lb]]
   (if (> la lb) [na la] [nb lb]))
 
-(defn longest-collatz [limit]
+(defn longest-collatz [start end]
   (reduce max-collatz
       (map #(let [s (collatz-seq %)] [(first s) (inc (count s))])
-          (range 2 (inc limit)))))
+          (range start (inc end)))))
 
 (defn collatz_length [[n _]]
                    ( println n)
@@ -38,7 +38,6 @@
                    (if (and (not= n 1) (not= (mod n 2) 0)) (+ 1 (collatz_length [(+ 1 (* 3 n ))] ))
                )
 )
-(defn longest-collatz [end] ())
 
 (defn -main [& args] (collatz_length [5] ))
 
