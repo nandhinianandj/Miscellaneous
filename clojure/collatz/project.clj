@@ -4,7 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 ;[clojure2minizinc.core "0.2.1"]
+                 [com.taoensso/timbre "4.7.4"]
+                 [criterium "0.4.4"]
                  ]
   :profiles {:uberjar {:aot :all}}
   :main ^:skip-aot collatz.core

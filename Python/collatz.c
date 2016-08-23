@@ -33,5 +33,5 @@ int main(int argc, char *argv[])
 			}
 		current_number = temp;
 	}
-	printf("%d,%d", highest_chain, highest_chain_number);
+	printf("%d %d %d", start, end, highest_chain);
 }
