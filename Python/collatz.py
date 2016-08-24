@@ -44,6 +44,13 @@ if __name__ == '__main__':
     #import cProfile
     #cProfile.run('main()')
     import sys
-    n1 = int(sys.argv[1])
-    n2 = int(sys.argv[2]) if len(sys.argv) > 2 else n1 + 1
-    main(n1,n2 )
+    #n1 = int(sys.argv[1])
+    #n2 = int(sys.argv[2]) + 1 if len(sys.argv) > 2 else n1 + 1
+    fd = open(sys.stdin, 'r')
+    lines = fd.readlines()
+    for each in lines:
+        if each:
+            vals = line.split(' ')
+            n1 = int(vals[0])
+            n2 = int(vals[1]) +  1 if len(vals) > 1 else n1 +  1
+            main(n1, n2)
