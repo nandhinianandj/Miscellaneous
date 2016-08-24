@@ -46,7 +46,7 @@ if __name__ == '__main__':
     import sys
     #n1 = int(sys.argv[1])
     #n2 = int(sys.argv[2]) + 1 if len(sys.argv) > 2 else n1 + 1
-    fd = open(sys.stdin, 'r')
+    fd = open(sys.argv[1] 'r')
     lines = fd.readlines()
     for each in lines:
         if each:
