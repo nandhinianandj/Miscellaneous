@@ -1,0 +1,117 @@
+is_prime(2017)
+
+# The sum of all odd primes up to 2017 is a prime number, i.e.,
+# 3+5+7+11+...+2017 is a prime number.
+n = sum(primes(3,2018)); n
+is_prime(n)
+
+# 2017π (rounds to nearest integer) is a prime
+n = round(2017*pi); n
+is_prime(n)
+
+# 2017e (rounds to nearest integer ) is a prime.
+n = round(2017*e); n
+is_prime(n)
+
+# The sum of the cubes of gaps of primes up to 2017 is a prime number.
+v = prime_range(2018)
+n = sum([(v[i+1]-v[i])^3 for i in range(len(v)-1)]); n
+is_prime(n)
+
+
+# The prime number before 2017 is 2017+(2-0-1-7), which makes it a
+# sexy prime, and the prime after 2017 is 2017+(2+0+1+7). 2017 itself
+# is of course equal to  2017+(2*0*1*7)
+2017+(2-0-1-7) == previous_prime(2017)
+2017+(2+0+1+7) == next_prime(2017)
+
+# Insert 7 into any two digits of 2017, it is still a prime number,
+# i.e. 27017, 20717, 20177 are all primes.
+for n in [27017, 20717, 20177]:
+    is_prime(n)
+
+
+# Since all digits of 2017 is less than 8, it can be viewed as an octal.
+# 2017 is still a prime number as an octal.
+n = int('2017',8); n
+is_prime(n)
+
+
+# 2017 can be written as a sum of three cubes of primes, i.e.,
+# p^3 +q^3 +r^3 for some primes p, q, r
+k = int(2017^(1/3))
+for p in [1..k]:
+    for q in [1..k]:
+        for r in [1..k]:
+            if p^3 + q^3 + r^3 == 2017:
+                print p, q, r
+
+
+
+#  can be written as a sum of cubes of five distinct integers.
+k = int(2017^(1/3))
+n = 0
+for p in [1..k]:
+    for q in [1..k]:
+        for r in [1..k]:
+            for s in [1..k]:
+                for t in [1..k]:
+                    if p^3 + q^3 + r^3 + s^3 + t^3 == 2017:
+                        n += 1
+print "%s ways"%n
+
+
+# 2017 can be written as
+# x^2+y^2, x^2+2y^2, x^2+3y^2, x^2+4y^2 x^2+6y^2, x^2+7y^2, x^2+8y^2, x^2+9y^2
+# (for positive integers x, y)
+R.<x,y> =ZZ[]
+B = int(sqrt(2017))
+for f in [x^2+y^2, x^2+2*y^2, x^2+3*y^2, x^2+4*y^2, x^2+6*y^2, x^2+7*y^2, x^2+8*y^2, x^2+9*y^2]:
+    done = False
+    for a in [1..B]:
+        for b in [1..B]:
+            if f(a,b) == 2017:
+                print str(f).replace('x', str(a)).replace('y', str(b)) + ' == 2017'
+                done = True
+                break
+        if done: break
+
+
+# 20170123456789 is also a prime
+is_prime(20170123456789)
+
+# the 2017th prime number is 17539 and 201717539 is also a prime.
+nth_prime(2017)
+is_prime(201717539)
+
+# Let p=2017, then both (p+1)/2 and (p+2)/3 are prime numbers.
+p = 2017
+is_prime((p+1)//2)
+is_prime((p+2)//3)
+
+# The first ten digits of the decimal expansion of the cubic root of
+# 2017 contains all different digits 0~9.
+N(2017^(1/3),digits=15)
+len(set(str(N(2017^(1/3),digits=15)).replace('.','')[:10]))
+
+# 2017 is the least integer that has this property.
+print "check who has this property"
+for n in [1..2017]:
+    if len(set(str(N(n^(1/3),digits=15)).replace('.','')[:10])) == 10:
+        print "n =", n, " has this property"
+
+
+N(10^(1/3), digits=15)
+len(set(str(N(10^(1/3),digits=15)).replace('.','')[:10]))
+
+# 2017 = 2^11 - 11th prime
+2017 == 2^11 - nth_prime(11)
+
+sum_of_k_squares(2, 2017)
+
+E = EllipticCurve('2017a'); show(E)
+E.rank()
+ModularSymbols(2017, 2,sign=1).decomposition()
+
+
+
