@@ -33,7 +33,10 @@ def masterMethod(lst, cmp=operator.gt, mergeFunc=None):
     pass
 
 alist = [54,26,93,17,77,31,44,55,20]
+print("Original inptu")
 print(alist)
+print("Sorted ascending")
 print(masterMethod(alist))
+print("Sorted descending")
 print(masterMethod(alist,cmp=operator.lt))
 
