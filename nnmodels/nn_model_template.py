@@ -6,17 +6,12 @@ import numpy as np
 import os
 import tensorflow as tf
 
-from collections import defaultdict
-from PIL import Image
-from sklearn import preprocessing
 from keras.callbacks import LearningRateScheduler
 
-import features
 import settings
 import read_data as rd
 from toolbelt import modelStorageUtils as utils
 import keras_utils as ku
-import keras_cnn as kc
 import keras_models as km
 #TODO: See if you can find a visualization method that's agnosit of underlying library, just take a
 # model and draw an architecture diagram somehow.
@@ -60,7 +55,7 @@ def main(model_type, input_type, optim_type, batch_size, epochs, augment=False):
         acc_history = ku.AccuracyHistory(file_path=os.path.join(settings.MODELS_BASE_PATH, 'tmp'))
         lrate = LearningRateScheduler(ku.step_decay)
         callbacks_list = [loss_history, acc_history, lrate]
-        model = kc.get_keras_CNN(input_shape, settings.NUM_CLASSES,
+        model = km.keras_cnn.get_keras_CNN(input_shape, settings.NUM_CLASSES,
 				initial_conv_filt_sz=256,
                                 initial_conv_kern_sz=5,
                                 conv_activ_func='relu',
@@ -92,9 +87,7 @@ def main(model_type, input_type, optim_type, batch_size, epochs, augment=False):
         acc_history = ku.AccuracyHistory(file_path=os.path.join(settings.MODELS_BASE_PATH, 'tmp'))
         lrate = LearningRateScheduler(ku.step_decay)
         callbacks_list = [loss_history, acc_history]#, lrate]
-        from thirdparty import inception_v1 as iv
-        #model = km.get_inception_model(data_shape, optim_type)
-        model = iv.get_inception_model(data_shape, optim_type, settings.NUM_CLASSES)
+        model = km.get_inception_model(data_shape, optim_type)
 
         #model.fit_generator(train_datagen,
         #                        epochs=epochs, verbose=1,
